@@ -17,8 +17,8 @@ public class ContadorTempo {
     }
     
     
-    public int tempoDecorrido(){
+    public double tempoDecorrido(){
         fim = System.currentTimeMillis();
-        return (int) ((int)fim - inicio) / 1000;
+        return (fim - inicio) / 1000;
     }
 }

@@ -14,6 +14,10 @@ import java.util.logging.Logger;
  */
 public class Pessoa extends Cliente {
 
+    public Pessoa(double tempoEntrada) {
+        super(tempoEntrada);
+    }
+
     @Override
     public void agir() {
         try {

@@ -43,9 +43,8 @@ public class NucleoDeTravessia {
             
             int aleatorio = (int)(Math.random()*1000)%5+1; //Gera um numero aleatorio de carros a ser adicionado na fila
             for(int j = 0; j < aleatorio; j++){
-                Carro car = new Carro();
+                Carro car = new Carro(contadorGeral.tempoDecorrido());
                 fila.add(car); //Adiciona carros a fila
-                car.setTempoEntrada(contadorGeral.tempoDecorrido());
                 m.m("1 carro adicionado a fila.");
             }
             
@@ -56,11 +55,12 @@ public class NucleoDeTravessia {
                  System.out.println(contadorGeral.tempoDecorrido());
                  
              }else{
-                 Cliente c = (Cliente) fila.peek();
+                 Cliente c = (Cliente) fila.remove();
                  m.m("Um cliente vai entrar na balsa!");
                  c.agir();
                  
                  if(balsa.adicionar(c)){
+                     c.setTempoSaida(contadorGeral.tempoDecorrido());
                      m.m("Cliente entrou na balsa depois de "+c.tempoFila()+" tempo na fila!");//CONSERTAR ESSE TEMPO DE FILA!!
                      
                      //?

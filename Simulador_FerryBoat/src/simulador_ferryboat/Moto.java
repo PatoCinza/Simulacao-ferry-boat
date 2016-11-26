@@ -14,6 +14,10 @@ import java.util.logging.Logger;
  */
 public class Moto extends Cliente{
 
+    public Moto(double tempoEntrada) {
+        super(tempoEntrada);
+    }
+
     @Override
     public void agir() {
         try {

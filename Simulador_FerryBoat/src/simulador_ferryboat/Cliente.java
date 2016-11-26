@@ -11,20 +11,22 @@ package simulador_ferryboat;
  */
 public abstract class Cliente {
     
-    private int tempoEntrada;
-    private int tempoSaida;
-    
-    
+    private double tempoEntrada;
+    private double tempoSaida;
 
-    public int tempoFila(){
-        return tempoSaida-tempoEntrada;
-    }
-
-    public void setTempoEntrada(int tempoEntrada) {
+    public Cliente(double tempoEntrada) {
         this.tempoEntrada = tempoEntrada;
     }
 
-    public void setTempoSaida(int tempoSaida) {
+    public double tempoFila(){
+        return tempoSaida-tempoEntrada;
+    }
+
+    public void setTempoEntrada(double tempoEntrada) {
+        this.tempoEntrada = tempoEntrada;
+    }
+
+    public void setTempoSaida(double tempoSaida) {
         this.tempoSaida = tempoSaida;
     }
 

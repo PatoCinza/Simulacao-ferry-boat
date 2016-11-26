@@ -14,6 +14,10 @@ import java.util.logging.Logger;
  */
 public class Carro extends Cliente{
 
+    public Carro(double tempoEntrada) {
+        super(tempoEntrada);
+    }
+
     @Override
     public void agir() {
         try {
