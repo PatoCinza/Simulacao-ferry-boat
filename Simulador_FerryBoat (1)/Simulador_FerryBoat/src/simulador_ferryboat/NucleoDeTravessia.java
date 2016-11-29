@@ -110,6 +110,7 @@ public class NucleoDeTravessia {
                             c.setTempoSaida(contadorGeral.tempoDecorridoSec());
                             m.m(3, "Cliente "+c.getId()+" entrou na balsa depois de "+c.tempoFila()+" tempo na fila!");//CONSERTAR ESSE TEMPO DE FILA!!
 
+
                             //?
                         }else{
                             System.out.println("BALSA1 - Cliente não pode entrar na balsa pois está lotada!");
