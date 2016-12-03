@@ -91,6 +91,7 @@ public class NucleoDeTravessia {
                     System.out.println("~~Fazendo travessia de 5 minutos~~");
                     balsa1.setTempoDeSaida(System.currentTimeMillis());
                     balsa1.resetar();
+                    balsa2.resetar();
                     frame.setjTextArea3(";");
                     frame.setjTextArea4(";");
                     contadorPontual.iniciar();
@@ -108,13 +109,9 @@ public class NucleoDeTravessia {
                         if(balsa1.adicionar(c)){
                             fila1.poll();
                             c.setTempoSaida(contadorGeral.tempoDecorridoSec());
-                            m.m(3, "Cliente "+c.getId()+" entrou na balsa depois de "+c.tempoFila()+" tempo na fila!");//CONSERTAR ESSE TEMPO DE FILA!!
-
-
-                            //?
+                            m.m(3, "Cliente "+c.getId()+" entrou na BALSA1 depois de "+c.tempoFila()+" tempo na fila!");
                         }else{
                             System.out.println("BALSA1 - Cliente não pode entrar na balsa pois está lotada!");
-                     //m.m("BALSA1 - Cliente não pode entrar na balsa pois está lotada!");
                         }
                     }
                         
@@ -127,9 +124,7 @@ public class NucleoDeTravessia {
                         if(balsa2.adicionar(c2)){
                             fila2.poll();
                             c2.setTempoSaida(contadorGeral.tempoDecorridoSec());
-                            m.m(4, "Cliente "+c2.getId()+" entrou na balsa depois de "+c2.tempoFila()+" tempo na fila!");//CONSERTAR ESSE TEMPO DE FILA!!
-
-                            //?
+                            m.m(4, "Cliente "+c2.getId()+" entrou na BALSA2 depois de "+c2.tempoFila()+" tempo na fila!");
                         }else{
                             System.out.println("BALSA2 - Cliente não pode entrar na balsa pois está lotada!");
                         }
