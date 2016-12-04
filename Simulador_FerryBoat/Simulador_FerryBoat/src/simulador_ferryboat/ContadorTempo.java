@@ -12,8 +12,13 @@ package simulador_ferryboat;
 public class ContadorTempo {
     private long inicio = 0;
     private long fim = 0;
+    
     public void iniciar(){
         inicio = System.currentTimeMillis();
+    }
+    
+    public long tempoSistemaSec(){
+        return System.currentTimeMillis() / 1000;
     }
     
     

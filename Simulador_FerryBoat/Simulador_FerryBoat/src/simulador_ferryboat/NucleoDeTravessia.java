@@ -58,14 +58,14 @@ public class NucleoDeTravessia {
             
             //BALSA 1
             int aleatorio = (int)(Math.random()*1000)%2+1; //Gera um numero aleatorio de carros a ser adicionado na fila
-            if (controleFila1.tempoDecorridoMillis()> tempoLockFila1) {
+            if (controleFila1.tempoDecorridoMillis()> tempoLockFila1) { // Testa se o tempo de trancamento foi excedido para poder adicionar os carros
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
                     car.setTempoEntrada(contadorGeral.tempoDecorridoSec());
                     fila1.add(car); //Adiciona carros a fila
                     m.m(1,"Carro "+car.getId()+" adicionado a fila.");
                     controleFila1.iniciar();  
-                    tempoLockFila1 = (int)(Math.random()*10000)%6500+1;
+                    tempoLockFila1 = (int)(Math.random()*10000)%6500+1; //Define um tempo aleatório dentro dos padrões pros próximos carros chegarem
                     
                 }
             }
@@ -85,7 +85,8 @@ public class NucleoDeTravessia {
             }
             
             if(!(balsa1.getTempoDeSaida()+5000 > System.currentTimeMillis())) {
-                if(balsa1.getTempo()<=contadorPontual.tempoDecorridoSec()){ //Se o tempo de carga/descarga esgotar: balsa1 sai.
+                //Se o tempo de carga/descarga esgotar: balsa1 e 2 saem
+                if(balsa1.getTempo()<=contadorPontual.tempoDecorridoSec()){ 
                     System.out.println("Tempo de balsa esgotou! Balsa partiu!");
 
                     System.out.println("~~Fazendo travessia de 5 minutos~~");
