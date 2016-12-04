@@ -39,7 +39,9 @@ public class NucleoDeTravessia {
     }
     
     
-    public void iniciar(Principal frame) throws InterruptedException{
+    public void iniciar(Principal frame, int horario) throws InterruptedException{
+        variaveisDoSistema variaveis = new variaveisDoSistema(horario);
+        
         ContadorTempo contadorGeral = new ContadorTempo();
         ContadorTempo contadorPontual = new ContadorTempo();
         ContadorTempo controleFila1 = new ContadorTempo();
@@ -57,40 +59,40 @@ public class NucleoDeTravessia {
         for(int i = 0;; i++){
             
             //BALSA 1
-            int aleatorio = (int)(Math.random()*1000)%2+1; //Gera um numero aleatorio de carros a ser adicionado na fila
-            if (controleFila1.tempoDecorridoMillis()> tempoLockFila1) { // Testa se o tempo de trancamento foi excedido para poder adicionar os carros
+            int aleatorio = (int)(Math.random()*1000)%variaveis.getNumCarros(); //Gera um numero aleatorio de carros a ser adicionado na fila
+            if (controleFila1.tempoDecorridoSec()> tempoLockFila1) { // Testa se o tempo de trancamento foi excedido para poder adicionar os carros
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
                     car.setTempoEntrada(contadorGeral.tempoDecorridoSec());
                     fila1.add(car); //Adiciona carros a fila
                     m.m(1,"Carro "+car.getId()+" adicionado a fila.");
                     controleFila1.iniciar();  
-                    tempoLockFila1 = (int)(Math.random()*10000)%6500+1; //Define um tempo aleatório dentro dos padrões pros próximos carros chegarem
+                    tempoLockFila1 = (int) ((int)(Math.random()*10000)%variaveis.getTempoEsperaCarro()+1); //Define um tempo aleatório dentro dos padrões pros próximos carros chegarem
                     
                 }
             }
             
             //BALSA 2
-            int aleatorio2 = (int)(Math.random()*1000)%2+1; //Gera um numero aleatorio de carros a ser adicionado na fila
-            if (controleFila2.tempoDecorridoMillis()> tempoLockFila2) {
+            int aleatorio2 = (int)(Math.random()*1000)% variaveis.getNumCarros(); //Gera um numero aleatorio de carros a ser adicionado na fila
+            if (controleFila2.tempoDecorridoSec()> tempoLockFila2) {
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
                     car.setTempoEntrada(contadorGeral.tempoDecorridoSec());
                     fila2.add(car); //Adiciona carros a fila
                     m.m(2, "Carro "+car.getId()+" adicionado a fila.");
                     controleFila2.iniciar();  
-                    tempoLockFila2 = (int)(Math.random()*10000)%6500+1;
+                    tempoLockFila2 = (int) ((int)(Math.random()*10000)%variaveis.getTempoEsperaCarro()+1);
                     
                 }
             }
             
-            if(!(balsa1.getTempoDeSaida()+5000 > System.currentTimeMillis())) {
+            if(!(balsa1.getTempoDeSaida()+variaveis.getTempoBalsaMovimento() > contadorGeral.tempoSistemaSec())) {
                 //Se o tempo de carga/descarga esgotar: balsa1 e 2 saem
                 if(balsa1.getTempo()<=contadorPontual.tempoDecorridoSec()){ 
                     System.out.println("Tempo de balsa esgotou! Balsa partiu!");
 
                     System.out.println("~~Fazendo travessia de 5 minutos~~");
-                    balsa1.setTempoDeSaida(System.currentTimeMillis());
+                    balsa1.setTempoDeSaida(contadorGeral.tempoSistemaSec());
                     balsa1.resetar();
                     balsa2.resetar();
                     frame.setjTextArea3(";");
