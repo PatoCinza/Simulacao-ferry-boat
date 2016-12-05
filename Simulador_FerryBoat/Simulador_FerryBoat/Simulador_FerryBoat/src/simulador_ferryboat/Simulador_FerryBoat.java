@@ -43,13 +43,15 @@ public class Simulador_FerryBoat {
     }
     
     public static void iniciar(){
+        int horario = 1;
+                
         Principal janela1 = new Principal();
         janela1.setVisible(true);
         ContadorTempo cont = new ContadorTempo();
         NucleoDeTravessia nucleo1 = new NucleoDeTravessia();
         nucleo1.setBalsas(new Balsa(300, 10), new Balsa(350, 10));
         try {
-            nucleo1.iniciar(janela1, 1);
+            nucleo1.iniciar(janela1, horario);
         } catch (InterruptedException ex) {
             Logger.getLogger(Simulador_FerryBoat.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -28,6 +28,7 @@ public class NucleoDeTravessia {
     private float tempoEspera;
     private Queue fila1 = new ArrayDeque(500);
     private Queue fila2 = new ArrayDeque(500);
+    private int horario;
     
     public void setBalsas(Balsa balsa1, Balsa balsa2){
         this.balsa1 = balsa1;
@@ -38,9 +39,21 @@ public class NucleoDeTravessia {
         this.tempoEspera = tempoEspera;
     }
     
+    private variaveisDoSistema checkMudancasTempo(Principal frame, variaveisDoSistema var) {
+        if (frame.getHorario() != horario){
+            var.setVariaveis(horario);
+            horario = frame.getHorario();          
+            return var;
+        } else {
+            return var;
+        }
+    }
+    
     
     public void iniciar(Principal frame, int horario) throws InterruptedException{
+        this.horario = horario;
         variaveisDoSistema variaveis = new variaveisDoSistema(horario);
+        variaveis = checkMudancasTempo(frame, variaveis);
         
         ContadorTempo contadorGeral = new ContadorTempo();
         ContadorTempo contadorPontual = new ContadorTempo();
@@ -57,6 +70,9 @@ public class NucleoDeTravessia {
         controleFila2.iniciar();
         
         for(int i = 0;; i++){
+            
+            //Verifica se o horário mudou
+            variaveis = checkMudancasTempo(frame, variaveis);
             
             //BALSA 1
             int aleatorio = (int)(Math.random()*1000)%variaveis.getNumCarros(); //Gera um numero aleatorio de carros a ser adicionado na fila

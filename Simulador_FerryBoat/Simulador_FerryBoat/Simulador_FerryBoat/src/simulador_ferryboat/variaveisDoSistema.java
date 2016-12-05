@@ -12,6 +12,10 @@ public class variaveisDoSistema {
     private int numCarros;
 
     public variaveisDoSistema(int horario) {
+        setVariaveis(horario);
+    }
+    
+    public void setVariaveis(int horario){
         switch(horario){
             case 1:
                 tempoEsperaCarro = 0.5;
@@ -35,7 +39,6 @@ public class variaveisDoSistema {
                 System.out.println("Horário não definido; sistema em baixo tráfego");
                 break;
         }
-        
     }
 
     public int getNumCarros() {
