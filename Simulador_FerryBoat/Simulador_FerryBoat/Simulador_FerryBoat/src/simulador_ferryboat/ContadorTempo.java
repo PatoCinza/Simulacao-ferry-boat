@@ -22,7 +22,7 @@ public class ContadorTempo {
     }
     
     
-    public int tempoDecorridoSec(){
+    public long tempoDecorridoSec(){
         fim = System.currentTimeMillis();
         return (int) ((int)fim - inicio) / 1000;
     }

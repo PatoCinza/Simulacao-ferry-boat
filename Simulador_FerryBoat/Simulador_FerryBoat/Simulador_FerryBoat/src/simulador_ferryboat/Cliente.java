@@ -11,8 +11,8 @@ package simulador_ferryboat;
  */
 public abstract class Cliente {
     private int id;
-    private int tempoEntrada;
-    private int tempoSaida;
+    private long tempoEntrada;
+    private long tempoSaida;
     private static int aux = 0;
 
     public Cliente() {
@@ -27,15 +27,15 @@ public abstract class Cliente {
         return id;
     }
 
-    public int tempoFila(){
-        return tempoSaida-tempoEntrada;
+    public long tempoFila(){
+        return tempoEntrada-tempoSaida;
     }
 
-    public void setTempoEntrada(int tempoEntrada) {
+    public void setTempoEntrada(long tempoEntrada) {
         this.tempoEntrada = tempoEntrada;
     }
 
-    public void setTempoSaida(int tempoSaida) {
+    public void setTempoSaida(long tempoSaida) {
         this.tempoSaida = tempoSaida;
     }
 

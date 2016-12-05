@@ -63,7 +63,7 @@ public class NucleoDeTravessia {
             if (controleFila1.tempoDecorridoSec()> tempoLockFila1) { // Testa se o tempo de trancamento foi excedido para poder adicionar os carros
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
-                    car.setTempoEntrada(contadorGeral.tempoDecorridoSec());
+                    car.setTempoEntrada(contadorGeral.tempoDecorridoMillis());
                     fila1.add(car); //Adiciona carros a fila
                     m.m(1,"Carro "+car.getId()+" adicionado a fila.");
                     controleFila1.iniciar();  
@@ -77,7 +77,7 @@ public class NucleoDeTravessia {
             if (controleFila2.tempoDecorridoSec()> tempoLockFila2) {
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
-                    car.setTempoEntrada(contadorGeral.tempoDecorridoSec());
+                    car.setTempoEntrada(contadorGeral.tempoDecorridoMillis());
                     fila2.add(car); //Adiciona carros a fila
                     m.m(2, "Carro "+car.getId()+" adicionado a fila.");
                     controleFila2.iniciar();  
@@ -91,12 +91,14 @@ public class NucleoDeTravessia {
                 if(balsa1.getTempo()<=contadorPontual.tempoDecorridoSec()){ 
                     System.out.println("Tempo de balsa esgotou! Balsa partiu!");
 
-                    System.out.println("~~Fazendo travessia de 5 minutos~~");
+                    System.out.println("");
                     balsa1.setTempoDeSaida(contadorGeral.tempoSistemaSec());
                     balsa1.resetar();
                     balsa2.resetar();
                     frame.setjTextArea3(";");
+                    frame.setjTextArea3("Travessia de 5 minutos");
                     frame.setjTextArea4(";");
+                    frame.setjTextArea4("Travessia de 5 minutos");
                     contadorPontual.iniciar();
 
 
@@ -104,7 +106,7 @@ public class NucleoDeTravessia {
                     //BALSA 1
                     if (!(fila1.isEmpty())){
                         Cliente c = (Cliente) fila1.peek();
-                        System.out.println("Cliente "+c.getId()+"vai entrar na balsa!");
+
                         c.agir();
 
 
@@ -114,14 +116,14 @@ public class NucleoDeTravessia {
                             c.setTempoSaida(contadorGeral.tempoDecorridoSec());
                             m.m(3, "Cliente "+c.getId()+" entrou na BALSA1 depois de "+c.tempoFila()+" tempo na fila!");
                         }else{
-                            System.out.println("BALSA1 - Cliente não pode entrar na balsa pois está lotada!");
+                            
                         }
                     }
                         
                     //BALSA 2
                     if (!(fila2.isEmpty())) {
                         Cliente c2 = (Cliente) fila2.peek();
-                        System.out.println("BALSA2 - Cliente "+c2.getId()+" vai entrar na balsa!");
+                        
                         c2.agir();
 
                         if(balsa2.adicionar(c2)){
@@ -129,7 +131,7 @@ public class NucleoDeTravessia {
                             c2.setTempoSaida(contadorGeral.tempoDecorridoSec());
                             m.m(4, "Cliente "+c2.getId()+" entrou na BALSA2 depois de "+c2.tempoFila()+" tempo na fila!");
                         }else{
-                            System.out.println("BALSA2 - Cliente não pode entrar na balsa pois está lotada!");
+                           
                         }
                     }
                 }
