@@ -74,6 +74,7 @@ public class Principal extends javax.swing.JFrame {
 
     public void setHorario(int horario) {
         this.horario = horario;
+        setTextButton(horario);
     }
     
     
