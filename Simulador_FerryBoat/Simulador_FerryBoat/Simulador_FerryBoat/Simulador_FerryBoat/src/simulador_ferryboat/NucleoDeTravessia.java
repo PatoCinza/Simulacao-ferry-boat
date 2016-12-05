@@ -79,7 +79,7 @@ public class NucleoDeTravessia {
             if (controleFila1.tempoDecorridoSec()> tempoLockFila1) { // Testa se o tempo de trancamento foi excedido para poder adicionar os carros
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
-                    car.setTempoEntrada(contadorGeral.tempoDecorridoMillis());
+                    car.setTempoEntrada(contadorPontual.tempoDecorridoMillis());
                     fila1.add(car); //Adiciona carros a fila
                     m.m(1,"Carro "+car.getId()+" adicionado a fila.");
                     controleFila1.iniciar();  
@@ -93,7 +93,7 @@ public class NucleoDeTravessia {
             if (controleFila2.tempoDecorridoSec()> tempoLockFila2) {
                 for(int j = 0; j < aleatorio; j++){
                     Carro car = new Carro();
-                    car.setTempoEntrada(contadorGeral.tempoDecorridoMillis());
+                    car.setTempoEntrada(contadorPontual.tempoDecorridoMillis());
                     fila2.add(car); //Adiciona carros a fila
                     m.m(2, "Carro "+car.getId()+" adicionado a fila.");
                     controleFila2.iniciar();  
